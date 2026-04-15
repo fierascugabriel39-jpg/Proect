@@ -1,0 +1,1 @@
+print("Salut! Acesta este primul meu cod în Antigravity.")
