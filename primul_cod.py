@@ -1,1 +1,2 @@
-print("Salut! Acesta este primul meu cod în Antigravity.")
+nume = input("Cum te cheama? ")
+print("Salut, " + nume + "! Acum codul tau este interactiv.")
