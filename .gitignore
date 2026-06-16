@@ -1,0 +1,11 @@
+# ── Claude Code (Fable 5) · 2026-06-16 ──
+# Plasă universală: gunoi OS/editor + tipare de secrete (preventiv).
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+*~
+*.env
+*.key
+*.pem
+id_rsa*
