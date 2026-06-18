@@ -9,3 +9,7 @@ Thumbs.db
 *.key
 *.pem
 id_rsa*
+secrets.h
+# ── Claude Code (Opus 4.8) · 2026-06-18 ──
+# Artefacte de build PlatformIO (generate, nu sursă) — altfel intră sute de .o/.bin în repo.
+.pio/
