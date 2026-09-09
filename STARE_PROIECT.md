@@ -293,6 +293,16 @@ Nu sări peste pași; dacă unul eșuează, oprește-te acolo și spune ce ai v�
    - doar unul → verificăm cablajul pe GPIO 25/26 și driverul IBT-2 #1;
    - niciunul → problemă de alimentare, nu de cod.
 
+### C-bis. Lămurește podul (5 minute, opțional)
+
+Rămas deschis din 9 sept.: din sesiunea cloud nu s-a putut trimite mesaj către
+sesiunea de pe telefon. Sesiunea de pe telefon aștepta activarea
+`remoteControlAtStartup` — posibil veriga lipsă, **neconfirmat**.
+
+Acasă, cu calculatorul de față, se testează ușor: activezi ce cere acea sesiune,
+apoi ceri o nouă încercare de mesaj. Dacă merge, se notează în secțiunea 0b ca
+fapt confirmat. Dacă nu, se caută altă cauză.
+
 ### D. De aici încolo, împreună
 
 7. Cu Motor A lămurit, se scrie **accelerația lină** — și se testează pe loc, pas cu
