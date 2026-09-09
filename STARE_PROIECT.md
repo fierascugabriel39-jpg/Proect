@@ -8,29 +8,50 @@
 
 ## 0. SITUAȚIA CURENTĂ — citește asta prima dată
 
-**Gabriel se află în Germania. Hardware-ul robotului NU este accesibil.**
+*Confirmat de Gabriel, 9 septembrie 2026.*
 
-Asta înseamnă: **nu propune și nu cere teste fizice** — fără upload pe placă, fără
-monitor serial, fără „apasă butonul EN/RST", fără verificat motoare. Procedura de la
-secțiunea 4 este valabilă tehnic, dar **nu se poate executa acum**. Se reia la
-întoarcerea în țară.
+**Gabriel este în Germania, la muncă. Robotul este acasă în România.
+Calculatorul lui NU este cu el. Are doar telefonul.**
 
-Necunoscut încă (de completat când se știe):
-- unde anume se află placa ESP32 și restul componentelor;
-- ce calculator este disponibil în Germania și ce are instalat pe el;
-- când are loc întoarcerea în România.
+Consecința e mai largă decât lipsa hardware-ului: **Gabriel nu poate rula nimic** —
+nici comenzi, nici scripturi, nici compilare, nici upload. Nu-i cere să execute nimic
+și nu-i da comenzi „de copiat". Nu are unde să le pună.
 
-**Ce se poate lucra de la distanță (ales de Gabriel, 9 sept. 2026):**
-1. Capul R2-D2 pentru printare 3D — `r2d2_head.scad`, design pur, zero hardware.
-2. Proiectul Antigravity / VoiceCommander — scripturile de voce, Kimi, Gemini, OLX.
-3. Documentație și ordine în proiect.
+### Cum se lucrează în perioada asta — „podul"
 
-**Explicit NEALES pentru moment:** codul Fazei 2 (accelerație lină / PID) — se scrie
-când robotul redevine accesibil, ca să poată fi și testat, nu doar compilat.
+    Gabriel (telefon)  ←→  Claude Code (calculator în cloud)  ←→  GitHub
+       citește, decide,        scrie codul, comite, urcă        păstrează tot
+       aprobă                                                    până acasă
+
+- **Claude face toată munca de execuție.** Scrie, modifică, comite, urcă pe GitHub.
+- **Gabriel citește pe telefon și decide.** Explicații scurte, fără comenzi de rulat.
+- **GitHub e locul de întâlnire.** Tot ce se produce acum îl așteaptă acolo, gata
+  de folosit când ajunge la calculator, în România.
+
+### Ce se poate face REAL în perioada asta
+
+| Se poate | De ce |
+|---|---|
+| Capul R2-D2 3D (`r2d2_head.scad`) | design pur, Claude îl scrie integral |
+| Documentație și ordine în proiect | text, zero execuție |
+| Cod nou pentru robot (Faza 2) | se poate scrie și comite; testarea așteaptă |
+
+| NU se poate | De ce |
+|---|---|
+| Orice test fizic pe robot | robotul e în România |
+| Upload pe placă, monitor serial | nu are placa și nici calculator |
+| Antigravity / VoiceCommander, în cea mai mare parte | codul principal (`bus.py`, `orchestrator.py`) **nu e în acest repo**, stă doar pe calculatorul de acasă. Din proiect se văd doar scripturile mici care îl apelează. |
+
+### Necunoscut încă
+- când are loc întoarcerea în România;
+- dacă motoarele au encodere (blochează PID-ul din Faza 2);
+- ce ecran de 7" și ce telefon Huawei anume (dimensiuni reale pentru capul 3D);
+- dacă există imprimantă 3D și ce dimensiune de pat are.
 
 > **Notă pentru orice asistent AI care citește acest fișier:** nu ai memorie între
-> sesiuni. Tot ce știi despre situația reală a lui Gabriel este scris aici. Dacă
-> secțiunea asta pare veche, întreabă înainte de a presupune că robotul e la îndemână.
+> sesiuni. Tot ce știi despre situația reală a lui Gabriel este scris aici. Nu-i cere
+> să ruleze comenzi și nu presupune că are calculatorul sau robotul la îndemână —
+> întreabă întâi dacă secțiunea asta pare veche.
 
 ---
 
@@ -195,7 +216,7 @@ Lista e împărțită după ce se poate face acum și ce așteaptă robotul.
 | # | Ce | Fișier | Stare |
 |---|---|---|---|
 | 1 | Capul R2-D2 pentru ecran 7" | `r2d2_head.scad` | desenat, nevalidat |
-| 2 | Antigravity / VoiceCommander | `test_kimi.py`, `olx_kimi_sync.py`, `start_antigravity.sh` | funcționale, neorganizate |
+| 2 | Antigravity — doar fișierele din repo | `test_kimi.py`, `olx_kimi_sync.py`, `start_antigravity.sh` | limitat: codul principal e pe calculatorul de acasă, nu aici |
 | 3 | Documentație și ordine în proiect | acest fișier | în lucru |
 
 **Despre capul 3D — ce lipsește din `r2d2_head.scad`:**
