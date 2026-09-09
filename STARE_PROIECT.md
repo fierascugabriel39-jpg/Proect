@@ -300,6 +300,39 @@ Lista e împărțită după ce se poate face acum și ce așteaptă robotul.
 - **Nu urca niciodată `secrets.h`** — e deja blocat în `.gitignore`, lasă-l așa.
 - Când modifici codul robotului, **modifică ambele copii** ale sketch-ului (secțiunea 3).
 - Când reiei lucrul după o pauză: citește acest fișier, apoi `git log --oneline -5`.
+### Date personale — repo-ul este PUBLIC
+
+**Verificat 9 sept. 2026: `fierascugabriel39-jpg/Proect` este public.** Oricine, de
+oriunde, poate citi tot ce se scrie aici, inclusiv istoricul complet al modificărilor.
+
+**Nu se scriu în proiect:** adrese de domiciliu, localități unde locuiește cineva,
+numere de telefon, date de identitate, nume complete ale persoanelor apropiate.
+Nimic din toate astea nu ajută la construirea robotului — deci nu au ce căuta aici.
+
+Se pot scrie fără probleme: cod, scheme, pinout, decizii tehnice, calendar de lucru,
+prenumele proprietarului proiectului.
+
+**Cheile de acces și parolele** (WiFi, API) stau exclusiv în fișiere ignorate de git —
+`secrets.h`, variabile de mediu. Niciodată direct în cod. Scanat 9 sept. 2026: istoricul
+e curat, `secrets.h` nu a fost comis niciodată.
+
+**Atenție:** ce ajunge o dată într-un repo public rămâne public. Ștergerea ulterioară
+nu ajută — rămâne în istoric, în cópii și în arhive. Singura protecție reală e să nu
+ajungă acolo de la început.
+
+> **Pentru asistenții AI:** dacă utilizatorul îți spune în conversație unde locuiește
+> sau alte date personale, folosește-le ca să înțelegi contextul, dar **nu le scrie în
+> fișiere**. Notează doar ce e relevant tehnic.
+
+### Automatizări active
+
+- `.github/workflows/scanare-secrete.yml` — pornește la fiecare modificare urcată și
+  caută chei/parole scăpate în cod. Prinde formate de chei, **nu** date personale.
+- De activat manual din browser (Settings → Code security → Secret scanning →
+  Push protection): blochează trimiterea unei chei încă dinainte să ajungă pe GitHub.
+
+### Rutina de lucru
+
 - Actualizează **secțiunea 0** ori de câte ori se schimbă situația reală (locație,
   acces la hardware, ce calculator ai). E secțiunea de care depinde tot restul.
 - Actualizează secțiunile 1 și 6 după fiecare sesiune de lucru.
