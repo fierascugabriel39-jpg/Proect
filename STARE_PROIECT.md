@@ -190,7 +190,29 @@ cloud merge, cloud → telefon nu **→** podul e cu sens unic.
 să supraviețuiască trecerii dintre sesiuni **nu se transmite prin mesaje — se scrie
 în GitHub.** Documentul ăsta e canalul, nu conversația.
 
-### 7. De ce documentul ăsta există
+### 7. De ce o sesiune nu e un loc de păstrare
+
+Verificat pe 9 sept. 2026, pe starea reală a sesiunilor contului:
+
+Sesiunile de pod rulează pe telefon **→** telefonul adoarme, Termux e oprit, rețeaua
+pică **→** patru din cinci sesiuni erau oprite cu aceeași eroare, `computer_unreachable`
+**→** fiecare a înghețat exact unde era, în mijlocul firului.
+
+Consecințele s-au și văzut, nu sunt teoretice:
+- o sesiune din 4 sept. terminase o cercetare și rezultatul a rămas necitit 5 zile;
+- o sesiune din 5 sept. aștepta o instrucțiune și s-a deconectat cu ea în brațe;
+- o sesiune din 24 mai a lucrat pe o ramură care **nu a ajuns niciodată pe GitHub** —
+  verificat, ramura nu există. Munca ei nu mai poate fi recuperată.
+
+**Mai departe:** o sesiune e un loc de **trecere**, nu de păstrare. Un rezultat care
+trăiește doar într-un transcript e, practic, pierdut — nu pentru că-l șterge cineva,
+ci pentru că nimeni nu-l mai scoate de acolo.
+
+Regula care rezultă: **ce merită păstrat se scrie în GitHub în aceeași sesiune în care
+s-a aflat.** Nu „la sfârșit", nu „când am timp" — atunci, pe loc. Fiindcă nu se știe
+dacă va mai fi un sfârșit al acelei sesiuni.
+
+### 8. De ce documentul ăsta există
 
 Gabriel a pierdut firul contextului **→** nu pentru că lipsea informația, era toată în
 proiect **→** ci pentru că nimic nu lega commit-ul din iunie de decizia de azi.
@@ -198,6 +220,12 @@ proiect **→** ci pentru că nimic nu lega commit-ul din iunie de decizia de az
 **Mai departe:** un document care doar enumeră stări repetă exact problema. De aceea
 secțiunea asta. **Când adaugi ceva nou aici, adaugă și lanțul lui** — ce l-a cauzat și
 ce obligă mai departe. O stare fără fir e o fotografie; firul e ce se poate folosi.
+
+**Și un termen de expirare, de tratat ca atare:** secțiunea 0 descrie situația de
+9 sept. 2026 și **devine falsă pe 11 sept.**, când Gabriel ajunge acasă. Nimic nu o
+actualizează singură. Prima sarcină a primei sesiuni de pe 11 este să rescrie
+secțiunea 0 — altfel documentul făcut ca să prevină contextul pierdut ajunge chiar el
+să mintă. *Al patrulea simptom care va minți, și cel mai ușor de evitat.*
 
 ---
 
