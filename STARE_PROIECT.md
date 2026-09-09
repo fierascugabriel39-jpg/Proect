@@ -25,9 +25,12 @@
 Din 11 septembrie situația de mai jos NU mai este valabilă — se poate lucra normal,
 cu execuție și teste fizice. **Vezi secțiunea 4b: planul primei zile acasă.**
 
-Consecința e mai largă decât lipsa hardware-ului: **Gabriel nu poate rula nimic** —
-nici comenzi, nici scripturi, nici compilare, nici upload. Nu-i cere să execute nimic
-și nu-i da comenzi „de copiat". Nu are unde să le pună.
+Consecința asupra robotului: **niciun test fizic** — placa e în România.
+
+**ATENȚIE, corectat 9 sept. 2026:** o versiune anterioară a acestui document spunea
+că „Gabriel nu poate rula nimic". **Afirmație greșită**, scrisă fără verificare.
+Vezi secțiunea 0b — există un pod de sesiuni, iar pe telefon rulează Claude Code CLI
+cu shell real.
 
 ### Cum se lucrează în perioada asta — „podul"
 
@@ -77,6 +80,46 @@ Menționate de Gabriel, de confirmat la fața locului pe 11 sept.:
 > sesiuni. Tot ce știi despre situația reală a lui Gabriel este scris aici. Nu-i cere
 > să ruleze comenzi și nu presupune că are calculatorul sau robotul la îndemână —
 > întreabă întâi dacă secțiunea asta pare veche.
+
+---
+
+## 0b. „PODUL" — sesiuni legate între ele
+
+Gabriel a construit un sistem de sesiuni Claude Code legate, ca să poată lucra și de
+pe telefon. **Constatat prin verificare directă, 9 sept. 2026** (nu presupus):
+
+### Ce s-a confirmat
+
+- Contul are sesiuni de tip **`bridge`**, pornite din `claude_code_cli`, marcate
+  `remote-control-auto`. Sunt cinci la număr.
+- Una era **conectată** (`connected`) în dimineața zilei de 9 sept.
+- Toate au `cross_session_inbound: available` — sunt construite să primească mesaje
+  de la alte sesiuni.
+- Din rezumatele lor reies unelte de linie de comandă folosite pe telefon: **Termux**,
+  **Wireless Debug**, **adb**. Deci telefonul are shell real, nu e doar un ecran.
+  *(indiciu puternic din datele sesiunilor, de confirmat direct)*
+
+### Ce NU a funcționat, testat pe 9 sept. 2026
+
+Din **această** sesiune cloud nu s-a putut trimite un mesaj către sesiunea de pe
+telefon. Încercat în două feluri, ambele respinse cu „no agent reachable":
+- după titlul sesiunii;
+- după identificatorul sesiunii.
+
+`ListAgents` raportează „niciun agent accesibil". Unealta `send_message` a serverului
+de sesiuni **nu este expusă** în această sesiune — se văd doar `list_sessions`,
+`get_session`, `create_session`, `interrupt_session`.
+
+### Explicația probabilă (de verificat, NU confirmată)
+
+Mesageria între sesiuni cere ca **Remote Control să fie conectat în sesiunea care
+trimite**. Aici nu este. Și — detaliu care se potrivește — sesiunea conectată de pe
+telefon era ea însăși **blocată**, așteptând ca Gabriel să activeze
+`remoteControlAtStartup`. Adică exact veriga lipsă.
+
+**Concluzie onestă:** podul există și se vede de aici, dar în ziua de 9 sept. 2026
+nu era funcțional în direcția cloud → telefon. Nu s-a stabilit dacă activarea
+Remote Control ar rezolva; e doar ipoteza cea mai plauzibilă din dovezi.
 
 ---
 
