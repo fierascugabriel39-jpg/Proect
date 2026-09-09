@@ -10,8 +10,20 @@
 
 *Confirmat de Gabriel, 9 septembrie 2026.*
 
-**Gabriel este în Germania, la muncă. Robotul este acasă în România.
-Calculatorul lui NU este cu el. Are doar telefonul.**
+**Gabriel este în Germania, la muncă. Robotul și calculatorul sunt acasă,
+în România. Are cu el doar telefonul.**
+
+### Calendar — perioada asta se termină în 2 zile
+
+| Data | Ce se întâmplă |
+|---|---|
+| **9 sept.** (azi) | Germania. Doar telefon. Se lucrează prin „pod" (mai jos). |
+| **10 sept., seara** | Pleacă spre casă. |
+| **10 sept., noaptea** | Odihnă. Nimic de lucru. |
+| **11 sept., ziua** | **Activ pe calculatorul de acasă.** Robotul devine accesibil. |
+
+Din 11 septembrie situația de mai jos NU mai este valabilă — se poate lucra normal,
+cu execuție și teste fizice. **Vezi secțiunea 4b: planul primei zile acasă.**
 
 Consecința e mai largă decât lipsa hardware-ului: **Gabriel nu poate rula nimic** —
 nici comenzi, nici scripturi, nici compilare, nici upload. Nu-i cere să execute nimic
@@ -34,7 +46,7 @@ nici comenzi, nici scripturi, nici compilare, nici upload. Nu-i cere să execute
 |---|---|
 | Capul R2-D2 3D (`r2d2_head.scad`) | design pur, Claude îl scrie integral |
 | Documentație și ordine în proiect | text, zero execuție |
-| Cod nou pentru robot (Faza 2) | se poate scrie și comite; testarea așteaptă |
+| Cod nou pentru robot (Faza 2) | se poate scrie, dar **nu merită acum** — pe 11 se scrie direct cu testare pe placă, ceea ce e mult mai eficient |
 
 | NU se poate | De ce |
 |---|---|
@@ -43,7 +55,6 @@ nici comenzi, nici scripturi, nici compilare, nici upload. Nu-i cere să execute
 | Antigravity / VoiceCommander, în cea mai mare parte | codul principal (`bus.py`, `orchestrator.py`) **nu e în acest repo**, stă doar pe calculatorul de acasă. Din proiect se văd doar scripturile mici care îl apelează. |
 
 ### Necunoscut încă
-- când are loc întoarcerea în România;
 - dacă motoarele au encodere (blochează PID-ul din Faza 2);
 - ce ecran de 7" și ce telefon Huawei anume (dimensiuni reale pentru capul 3D);
 - dacă există imprimantă 3D și ce dimensiune de pat are.
@@ -185,6 +196,51 @@ Pune IP-ul notat la Pasul 4 în `r2d2_udp_test.py`, linia `UDP_IP = "..."`. Apoi
     python3 r2d2_udp_test.py status      # verifică legătura
     python3 r2d2_udp_test.py fata
     python3 r2d2_udp_test.py stop
+
+---
+
+## 4b. PLAN PENTRU PRIMA ZI ACASĂ — 11 septembrie
+
+Ordinea e gândită ca fiecare pas să fie scurt și să confirme ceva înainte de următorul.
+Nu sări peste pași; dacă unul eșuează, oprește-te acolo și spune ce ai văzut.
+
+### A. Pregătire (5 minute)
+
+1. **Ia proiectul la zi:** `git pull origin main`
+   Vei primi documentul ăsta plus tot ce s-a lucrat cât ai fost plecat.
+
+2. **Verifică dacă `secrets.h` există deja:**
+   `ls r2d2_pio/src/secrets.h`
+   Pe calculatorul de acasă **probabil există deja** — a fost creat acolo în iunie și
+   nu se șterge la `git pull` (e ignorat de git, nu urmărit). Dacă apare, treci mai
+   departe. Dacă scrie „No such file", recreează-l după secțiunea 4, pasul 1.
+
+3. **Bagă ESP32 în USB** și verifică portul: `ls /dev/ttyACM* /dev/ttyUSB*`
+
+### B. Confirmă că tot ce mergea în iunie merge și acum (10 minute)
+
+4. **Urcă codul existent, neschimbat:** `cd r2d2_pio && pio run --target upload`
+   Scopul NU e o funcție nouă — e să confirmi că lanțul întreg (calculator → cablu →
+   placă) e viu după 3 luni de pauză. Dacă asta merge, orice altceva e ușor.
+
+5. **Monitor serial:** `pio device monitor`, apoi apasă EN/RST. Trebuie să vezi
+   `[MOTOR] LEDC 1kHz inițializat (OK)` și un IP. **Notează IP-ul.**
+
+### C. Răspunde la întrebarea rămasă din iunie (10 minute)
+
+6. **Motor A merge?** În monitorul serial, cu robotul ridicat de pe podea:
+   `v:120` apoi `fata` apoi `stop`.
+   Uită-te la **ambele** motoare. În comentariile codului scrie că la ultimul test
+   doar Motor B era activ — acum se lămurește. Spune-mi ce ai văzut:
+   - ambele se învârt → perfect, mergem la Faza 2;
+   - doar unul → verificăm cablajul pe GPIO 25/26 și driverul IBT-2 #1;
+   - niciunul → problemă de alimentare, nu de cod.
+
+### D. De aici încolo, împreună
+
+7. Cu Motor A lămurit, se scrie **accelerația lină** — și se testează pe loc, pas cu
+   pas. Ăsta e motivul pentru care nu s-a scris în avans: scrisă cu placa în față,
+   iese bine din prima; scrisă orbește, ar fi trebuit rescrisă oricum.
 
 ---
 
