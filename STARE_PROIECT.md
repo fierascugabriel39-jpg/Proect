@@ -127,6 +127,80 @@ Termux, Wireless Debug, adb — telefonul are shell real, nu doar ecran.
 
 ---
 
+## 0c. FIRUL — cum se leagă lucrurile între ele
+
+Restul documentului spune *ce este*. Secțiunea asta spune *de ce a ajuns așa* și
+*ce hotărăște mai departe*. Fiecare lanț se citește: cauză → efect → ce obligă în viitor.
+
+### 1. De ce 1kHz, și de ce nu se mai urcă niciodată
+
+Driverele IBT-2 au optocuploare PC817 **→** optocuploarele comută lent **→** la 20kHz
+nu apucau să comute complet **→** motorul avea spasme **→** coborât la 1kHz **→** merge fin.
+
+**Mai departe:** accelerația lină din Faza 2 se scrie **peste** 1kHz, nu în locul lui.
+Dacă cineva „optimizează" cândva frecvența în sus, spasmele revin — și va părea o
+problemă de algoritm, deși e aceeași problemă veche de hardware. *Simptomul va minți.*
+
+### 2. De ce Motor A blochează Faza 2
+
+UDP nu garantează livrarea **→** o comandă se poate pierde **→** inclusiv un „stop"
+**→** de aceea există timeout la 1.5s și watchdog pe WiFi, care opresc singure motoarele.
+
+**Mai departe:** orice comandă nouă adăugată în Faza 2 **trebuie** să reîmprospăteze
+`ultimaComanda`. Dacă accelerația lină e scrisă ca o acțiune de durată care nu
+actualizează ceasul ăla, robotul se va opri singur în mijlocul mișcării — și va părea
+că accelerația e stricată, deși protecția își face treaba corect. *Al doilea simptom
+care va minți.*
+
+### 3. De ce ordinea „Motor A întâi, PID după" nu e negociabilă
+
+În comentarii scrie că la ultimul test doar Motor B era activ **→** nu se știe dacă e
+cablaj, driver sau alimentare **→** cauza e nelămurită de trei luni.
+
+**Mai departe:** PID-ul citește encodere și corectează diferența dintre motoare. Pornit
+peste un motor care nu se învârte, va încerca la nesfârșit să compenseze ceva ce nu se
+poate compensa. Vei da vina pe reglaj și vei pierde zile. *De asta verificarea Motor A
+e pasul C din planul zilei de 11, înaintea oricărui cod nou.*
+
+### 4. De ce `secrets.h` se verifică, nu se recreează orbește
+
+Repo-ul e public **→** credențialele au fost scoase din sursă în iunie **→** puse în
+`secrets.h` **→** exclus din git.
+
+**Mai departe:** fiind exclus, nu vine cu descărcarea proiectului — dar **nici nu se
+șterge** la actualizare. Pe calculatorul de acasă există din iunie. Deci pasul corect
+e „verifică dacă e acolo", nu „creează-l". Recreat orbește, îl suprascrii și poți
+pierde parola bună.
+
+### 5. De ce cele două `.ino` sunt o capcană
+
+În iunie sketch-ul a fost dublat: unul pentru Arduino IDE, unul pentru PlatformIO
+**→** sunt copii identice **→** niciun mecanism nu le ține sincronizate.
+
+**Mai departe:** modifici unul, uiți celălalt, urci pe placă versiunea veche și comiți
+versiunea nouă. Testul și codul salvat ajung să nu mai fie același lucru. *Al treilea
+simptom care va minți.* Merită unificate cândva; până atunci, se modifică amândouă.
+
+### 6. De ce podul cu sens unic schimbă cum lucrăm
+
+Legitimația unei sesiuni cloud nu permite livrare către altă sesiune **→** telefon →
+cloud merge, cloud → telefon nu **→** podul e cu sens unic.
+
+**Mai departe:** telefonul inițiază, cloud-ul răspunde în transcript. Iar ce trebuie
+să supraviețuiască trecerii dintre sesiuni **nu se transmite prin mesaje — se scrie
+în GitHub.** Documentul ăsta e canalul, nu conversația.
+
+### 7. De ce documentul ăsta există
+
+Gabriel a pierdut firul contextului **→** nu pentru că lipsea informația, era toată în
+proiect **→** ci pentru că nimic nu lega commit-ul din iunie de decizia de azi.
+
+**Mai departe:** un document care doar enumeră stări repetă exact problema. De aceea
+secțiunea asta. **Când adaugi ceva nou aici, adaugă și lanțul lui** — ce l-a cauzat și
+ce obligă mai departe. O stare fără fir e o fotografie; firul e ce se poate folosi.
+
+---
+
 ## 1. Unde ești acum (pe scurt)
 
 **Faza 1 e TERMINATĂ și funcțională.** Robotul se mișcă, motorul merge fin, comenzile
