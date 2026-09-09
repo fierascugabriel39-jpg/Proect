@@ -425,20 +425,54 @@ Nu sări peste pași; dacă unul eșuează, oprește-te acolo și spune ce ai v�
    - doar unul → verificăm cablajul pe GPIO 25/26 și driverul IBT-2 #1;
    - niciunul → problemă de alimentare, nu de cod.
 
-### ÎNTREBARE DESCHISĂ pentru ziua de 11
+### PRIORITATE, hotărâtă de Gabriel pe 9 sept. 2026
 
-Planul de mai sus presupune că ziua de 11 începe cu robotul. Sesiunea de pe telefon
-raportează însă că pe 11 începe **munca pe OLX**, „real și permanent, nu exercițiu".
+**Ziua de 11 începe cu OLX. Robotul vine după.**
 
-**Nu se știe care are prioritate, și nu se presupune.** Gabriel hotărăște. Pașii A–C
-de mai sus rămân valabili oricând se ajunge la robot; nu se pierd dacă ziua începe
-cu altceva.
+Pașii A–D de mai sus rămân scriși și valabili oricând se ajunge la robot — nu se
+pierd, doar așteaptă. Vezi secțiunea 4c pentru OLX.
 
 ### D. De aici încolo, împreună
 
 7. Cu Motor A lămurit, se scrie **accelerația lină** — și se testează pe loc, pas cu
    pas. Ăsta e motivul pentru care nu s-a scris în avans: scrisă cu placa în față,
    iese bine din prima; scrisă orbește, ar fi trebuit rescrisă oricum.
+
+---
+
+## 4c. OLX — prioritatea zilei de 11
+
+**Stare: pregătire în curs. Ce înseamnă concret munca pe OLX nu e încă stabilit** —
+Gabriel precizează. Sesiunea de pe telefon a raportat pe 9 sept. că pe 11 începe
+„real și permanent, nu exercițiu", iar activitatea anterioară pe Kleinanzeigen
+(Germania) a fost **exercițiu, încheiat** — subiectul nu se redeschide.
+
+### Ce există deja în proiect (inventariat 9 sept. 2026)
+
+| Fișier | Ce face | Stare |
+|---|---|---|
+| `config_olx.json` | instrucțiunea pentru generarea anunțurilor de **vânzare**: titlu optimizat, detalii pe liniuțe, îndemn la acțiune | funcțional |
+| `test_gemini.py` | clientul care chiar generează anunțul, citind `config_olx.json` | funcțional |
+| `olx_kimi_sync.py` | căutare de oferte pentru **cumpărare** + evaluare calitate/preț | **nefuncțional aici** |
+
+Deci codul acoperă două direcții diferite: **vânzare** (anunțuri) și **cumpărare**
+(căutare de oferte). Care dintre ele e munca de pe 11 — nestabilit.
+
+### Trei lucruri de reparat înainte de folosirea reală
+
+1. **`config_olx.json` are pe primul loc un model inexistent**, scris intenționat așa:
+   `gemini-MODEL-STRICT-INEXISTENT`. A fost o probă a mecanismului de rezervă. La
+   folosire reală, fiecare anunț va eșua întâi pe el și va arde o încercare degeaba.
+   **Se scoate înainte de 11.**
+2. **Celelalte două modele din listă nu au fost verificate** că mai există și mai
+   răspund. Se verifică înainte, nu în timpul lucrului — altfel primul anunț real
+   eșuează și pare că e stricat programul.
+3. **`olx_kimi_sync.py` importă dintr-o cale care există doar pe calculatorul de
+   acasă** (`/home/gabriel/Documents/VoiceCommander`). Nu poate fi nici măcar testat
+   din cloud. Merge doar acasă.
+
+**Mai departe:** primele două se pot rezolva din cloud, înainte de 11, dacă Gabriel
+confirmă direcția. Al treilea se rezolvă doar acasă.
 
 ---
 
