@@ -88,38 +88,42 @@ Menționate de Gabriel, de confirmat la fața locului pe 11 sept.:
 Gabriel a construit un sistem de sesiuni Claude Code legate, ca să poată lucra și de
 pe telefon. **Constatat prin verificare directă, 9 sept. 2026** (nu presupus):
 
-### Ce s-a confirmat
+### Ce s-a confirmat — testat în ambele direcții, 9 sept. 2026
 
-- Contul are sesiuni de tip **`bridge`**, pornite din `claude_code_cli`, marcate
-  `remote-control-auto`. Sunt cinci la număr.
-- Una era **conectată** (`connected`) în dimineața zilei de 9 sept.
-- Toate au `cross_session_inbound: available` — sunt construite să primească mesaje
-  de la alte sesiuni.
-- Din rezumatele lor reies unelte de linie de comandă folosite pe telefon: **Termux**,
-  **Wireless Debug**, **adb**. Deci telefonul are shell real, nu e doar un ecran.
-  *(indiciu puternic din datele sesiunilor, de confirmat direct)*
+**Telefon → cloud: FUNCȚIONEAZĂ.** Sesiunea de pe telefon (Redmi, Termux/proot,
+`session_01X1PdY51wTvvP9GzGQtfReP`, podită prin Remote Control) a trimis un mesaj
+către această sesiune cloud și **a ajuns**. De acolo, sesiunea cloud se vede în
+`ListAgents` și unealta `SendMessage` e disponibilă.
 
-### Ce NU a funcționat, testat pe 9 sept. 2026
+**Cloud → telefon: NU FUNCȚIONEAZĂ.** Motiv aflat din răspunsul serverului, nu
+presupus:
 
-Din **această** sesiune cloud nu s-a putut trimite un mesaj către sesiunea de pe
-telefon. Încercat în două feluri, ambele respinse cu „no agent reachable":
-- după titlul sesiunii;
-- după identificatorul sesiunii.
+> *„this cloud session cannot message other sessions yet — its credential is
+> accepted for its own work but not for delivering to another session"*
 
-`ListAgents` raportează „niciun agent accesibil". Unealta `send_message` a serverului
-de sesiuni **nu este expusă** în această sesiune — se văd doar `list_sessions`,
-`get_session`, `create_session`, `interrupt_session`.
+Adică sesiunile cloud au o legitimație care le permite să-și facă treaba proprie,
+dar nu și să livreze mesaje altor sesiuni. Nu e o setare de pornit — e o limitare
+a platformei, la data asta.
 
-### Explicația probabilă (de verificat, NU confirmată)
+**Ipoteza anterioară a fost greșită.** Se presupusese că lipsește Remote Control
+activat în sesiunea emitentă. Nu asta era: `ListAgents` din cloud raportează „niciun
+agent accesibil" chiar și când sesiunea de pe telefon e activă și vede cloud-ul.
+Cauza e legitimația, nu configurarea.
 
-Mesageria între sesiuni cere ca **Remote Control să fie conectat în sesiunea care
-trimite**. Aici nu este. Și — detaliu care se potrivește — sesiunea conectată de pe
-telefon era ea însăși **blocată**, așteptând ca Gabriel să activeze
-`remoteControlAtStartup`. Adică exact veriga lipsă.
+### Ce înseamnă practic
 
-**Concluzie onestă:** podul există și se vede de aici, dar în ziua de 9 sept. 2026
-nu era funcțional în direcția cloud → telefon. Nu s-a stabilit dacă activarea
-Remote Control ar rezolva; e doar ipoteza cea mai plauzibilă din dovezi.
+Podul e **cu sens unic**: telefonul poate împinge stări, întrebări și rezultate către
+o sesiune cloud; sesiunea cloud nu poate iniția în sens invers.
+
+Modul de lucru care rezultă:
+- **telefonul conduce**, cloud-ul răspunde în transcriptul lui;
+- Gabriel citește răspunsul cloud-ului în transcript, nu primit înapoi pe telefon;
+- **GitHub rămâne canalul comun** pentru orice trebuie să supraviețuiască: ce scrie
+  cloud-ul acolo, telefonul citește, și invers.
+
+### Unelte de pe telefon (din datele sesiunilor)
+
+Termux, Wireless Debug, adb — telefonul are shell real, nu doar ecran.
 
 ---
 
@@ -292,16 +296,6 @@ Nu sări peste pași; dacă unul eșuează, oprește-te acolo și spune ce ai v�
    - ambele se învârt → perfect, mergem la Faza 2;
    - doar unul → verificăm cablajul pe GPIO 25/26 și driverul IBT-2 #1;
    - niciunul → problemă de alimentare, nu de cod.
-
-### C-bis. Lămurește podul (5 minute, opțional)
-
-Rămas deschis din 9 sept.: din sesiunea cloud nu s-a putut trimite mesaj către
-sesiunea de pe telefon. Sesiunea de pe telefon aștepta activarea
-`remoteControlAtStartup` — posibil veriga lipsă, **neconfirmat**.
-
-Acasă, cu calculatorul de față, se testează ușor: activezi ce cere acea sesiune,
-apoi ceri o nouă încercare de mesaj. Dacă merge, se notează în secțiunea 0b ca
-fapt confirmat. Dacă nu, se caută altă cauză.
 
 ### D. De aici încolo, împreună
 
