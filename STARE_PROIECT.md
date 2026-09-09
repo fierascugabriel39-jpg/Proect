@@ -54,6 +54,20 @@ nici comenzi, nici scripturi, nici compilare, nici upload. Nu-i cere să execute
 | Upload pe placă, monitor serial | nu are placa și nici calculator |
 | Antigravity / VoiceCommander, în cea mai mare parte | codul principal (`bus.py`, `orchestrator.py`) **nu e în acest repo**, stă doar pe calculatorul de acasă. Din proiect se văd doar scripturile mici care îl apelează. |
 
+### Stare: STAND BY (din 9 sept. 2026, seara)
+
+Nu se începe nicio lucrare nouă până pe 11 septembrie. Capul 3D a rămas nedemarat —
+se face acasă, unde poate fi și văzut. Nimic în lucru, nimic neterminat.
+
+### Unelte disponibile pe calculatorul de acasă
+
+Menționate de Gabriel, de confirmat la fața locului pe 11 sept.:
+- **adb** — telefonul se conectează prin USB la calculator;
+- **scrcpy** — oglindirea ecranului telefonului pe calculator;
+- unealtă de blocare a secretelor la commit, configurată global (nume neidentificat —
+  probabil git-secrets, gitleaks sau detect-secrets; nu a lăsat urme în acest repo);
+- PlatformIO, folosit în iunie pentru upload headless pe ESP32.
+
 ### Necunoscut încă
 - dacă motoarele au encodere (blochează PID-ul din Faza 2);
 - ce ecran de 7" și ce telefon Huawei anume (dimensiuni reale pentru capul 3D);
