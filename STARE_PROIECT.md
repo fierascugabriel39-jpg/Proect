@@ -326,8 +326,11 @@ ajungă acolo de la început.
 
 ### Automatizări active
 
-- `.github/workflows/scanare-secrete.yml` — pornește la fiecare modificare urcată și
-  caută chei/parole scăpate în cod. Prinde formate de chei, **nu** date personale.
+- `.github/workflows/scanare-secrete.yml` — caută chei/parole scăpate în cod.
+  Verificat funcțional pe 9 sept. 2026 (rulare reușită, „no leaks found"). Rulează în
+  două moduri: **la fiecare modificare urcată** verifică doar commit-urile noi, iar
+  **lunea dimineața** (și la pornire manuală) verifică întreg istoricul.
+  Prinde formate de chei, **nu** date personale.
 - De activat manual din browser (Settings → Code security → Secret scanning →
   Push protection): blochează trimiterea unei chei încă dinainte să ajungă pe GitHub.
 
