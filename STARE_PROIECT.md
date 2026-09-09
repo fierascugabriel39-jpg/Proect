@@ -442,6 +442,15 @@ pierd, doar așteaptă. Vezi secțiunea 4c pentru OLX.
 
 ## 4c. OLX — prioritatea zilei de 11
 
+> **Vezi `SINTEZA_OLX.md`** — sinteza motorului OLX existent: trei straturi, ce e
+> fapt și ce e ipoteză, ce lipsește ca să producă bani, și lista de verificat acasă
+> pe 10–11 sept. Raport din a doua mână, transmis de sesiunea de pe telefon pe
+> 9 sept.; se verifică la sursă acasă.
+>
+> **Atenție:** motorul OLX real trăiește în `~/Documents/Proect/olx_agent/` pe
+> calculatorul de acasă — **nu în acest depozit.** Fișierele OLX de aici
+> (`config_olx.json`, `test_gemini.py`, `olx_kimi_sync.py`) sunt altceva, mai mic.
+
 **Stare: pregătire în curs. Ce înseamnă concret munca pe OLX nu e încă stabilit** —
 Gabriel precizează. Sesiunea de pe telefon a raportat pe 9 sept. că pe 11 începe
 „real și permanent, nu exercițiu", iar activitatea anterioară pe Kleinanzeigen
