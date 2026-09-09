@@ -395,6 +395,31 @@ ajungă acolo de la început.
 - De activat manual din browser (Settings → Code security → Secret scanning →
   Push protection): blochează trimiterea unei chei încă dinainte să ajungă pe GitHub.
 
+### Regulă: nu se afirmă limite fără test
+
+Impusă de Gabriel pe 9 sept. 2026, după trei afirmații greșite făcute într-o
+singură zi de asistentul AI:
+1. „din browser nu vezi nimic" — fals, podul de sesiuni funcționează;
+2. „Gabriel nu poate rula nimic" — fals, are Claude Code CLI pe telefon, cu shell;
+3. „probabil lipsește Remote Control activat" — fals, cauza era legitimația
+   sesiunii cloud.
+
+Toate trei au fost rostite cu aceeași siguranță ca lucrurile verificate. Gabriel
+nu avea cum să le deosebească — și a trebuit să le corecteze el, deși structurile
+astea sunt exact partea care ar trebui să fie treaba asistentului.
+
+**Regula, pentru orice asistent AI care lucrează la acest proiect:**
+
+- „Nu se poate", „nu merge", „nu ai cum" — **nu se spun fără un test rulat.**
+  La fel și „merge sigur". Un mecanism nefolosit încă nu e un mecanism imposibil.
+- Dacă testul nu s-a făcut, se spune **„nu am verificat"** — nu „nu se poate".
+- Fiecare afirmație despre ce e posibil poartă eticheta ei: **confirmat prin test**,
+  **infirmat prin test**, sau **ipoteză**. Fără amestec.
+- Când testul cade, se caută **motivul dat de sistem**, nu unul inventat. Mesajul
+  de eroare e dovadă; presupunerea nu e.
+- Utilizatorul cunoaște uneltele pe care și le-a construit. Când spune că ceva
+  merge, aia e informație — se verifică, nu se contrazice din reflex.
+
 ### Rutina de lucru
 
 - Actualizează **secțiunea 0** ori de câte ori se schimbă situația reală (locație,
