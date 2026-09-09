@@ -212,7 +212,33 @@ Regula care rezultă: **ce merită păstrat se scrie în GitHub în aceeași ses
 s-a aflat.** Nu „la sfârșit", nu „când am timp" — atunci, pe loc. Fiindcă nu se știe
 dacă va mai fi un sfârșit al acelei sesiuni.
 
-### 8. De ce documentul ăsta există
+### 8. Seiful de note — trei copii care se despart
+
+Verificat pe 9 sept. 2026, la cererea sesiunii de pe telefon:
+
+Seiful Obsidian (~153 note) există în **trei locuri, cu trei vârste diferite**:
+
+| Unde | Vechime | Sincronizare |
+|---|---|---|
+| Calculatorul de acasă | originalul | — |
+| Telefon (`/sdcard/Antigraviti`) | copie din **2 august** | **niciun sens** |
+| Un depozit privat pe GitHub | ultima urcare **16 iunie** | oprită |
+
+**Din cloud nu se vede deloc pe cale directă** — verificat: nu există `/sdcard`,
+nici vreun dosar cu numele ăsta, nici vreo notă de-a lui Gabriel pe mașina cloud.
+Copia de pe GitHub ar fi teoretic accesibilă, dar atașarea depozitului a fost
+**blocată de clasificatorul de permisiuni** pe 9 sept. Deci azi: nu.
+
+**Mai departe:** copia de pe GitHub e cu ~7 săptămâni mai veche decât cea de pe
+telefon. Dacă cineva o citește crezând că e la zi, va lucra pe informație expirată —
+*al cincilea simptom care va minți*, și cel mai greu de prins, fiindcă notele arată
+la fel indiferent de vârstă.
+
+Ce trebuie hotărât acasă, pe 11: **care copie e cea adevărată** și dacă se
+restabilește o sincronizare. Până atunci, orice notă folosită se ia de pe telefon,
+nu de pe GitHub.
+
+### 9. De ce documentul ăsta există
 
 Gabriel a pierdut firul contextului **→** nu pentru că lipsea informația, era toată în
 proiect **→** ci pentru că nimic nu lega commit-ul din iunie de decizia de azi.
@@ -398,6 +424,15 @@ Nu sări peste pași; dacă unul eșuează, oprește-te acolo și spune ce ai v�
    - ambele se învârt → perfect, mergem la Faza 2;
    - doar unul → verificăm cablajul pe GPIO 25/26 și driverul IBT-2 #1;
    - niciunul → problemă de alimentare, nu de cod.
+
+### ÎNTREBARE DESCHISĂ pentru ziua de 11
+
+Planul de mai sus presupune că ziua de 11 începe cu robotul. Sesiunea de pe telefon
+raportează însă că pe 11 începe **munca pe OLX**, „real și permanent, nu exercițiu".
+
+**Nu se știe care are prioritate, și nu se presupune.** Gabriel hotărăște. Pașii A–C
+de mai sus rămân valabili oricând se ajunge la robot; nu se pierd dacă ziua începe
+cu altceva.
 
 ### D. De aici încolo, împreună
 
